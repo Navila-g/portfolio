@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw=' 'sha256-cLcSGTMtX4xZYs8Ap1Pweu195ES1NO36m9mDYfLEq6U='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Navila García · Ciberseguridad</title>
+<meta name="description" content="Portfolio de Navila García, estudiante de ciberseguridad: pentesting, análisis forense, blue team y CTFs.">
+<meta name="theme-color" content="#050807">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Navila García · Ciberseguridad">
+<meta property="og:description" content="Estudiante de ciberseguridad. Pentesting, forense, blue team y CTFs.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/big-shoulders-display-0.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fuentes.css">
+<link rel="stylesheet" href="assets/css/estilos.css">
+<script>document.documentElement.classList.add('js');</script>
+<script type="importmap">
+{ "imports": { "three": "./assets/vendor/three.module.min.js", "three/addons/": "./assets/vendor/addons/" } }
+</script>
+</head>
+<body>
+
+<!-- ── Pantalla de carga: «descifrando» ─────────────────────────── -->
+<div class="pre" id="pre" aria-hidden="true">
+  <div class="pre__in">
+    <p class="pre__label mono">Descifrando portfolio</p>
+    <p class="pre__num" id="pre-num">000</p>
+    <div class="pre__bar"><span id="pre-bar"></span></div>
+    <p class="pre__hex mono" id="pre-hex">0x00000000000000000000000000000000</p>
+  </div>
+</div>
+
+<!-- Escena 3D fija detrás de todo -->
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Cursor propio (solo ratón) -->
+<div class="cur" aria-hidden="true"><span class="cur__dot"></span><span class="cur__ring"><span class="cur__label"></span></span></div>
+
+<!-- ── Navegación ───────────────────────────────────────────────── -->
+<header class="nav" id="nav">
+  <a class="nav__logo" href="#inicio" aria-label="Volver al inicio">Navila</a>
+  <nav class="nav__links" aria-label="Secciones">
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#arsenal">Arsenal</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#trayectoria">Trayectoria</a>
+  </nav>
+  <a class="nav__cta" href="#contacto" data-magnetic><span class="dot"></span>Disponible para prácticas</a>
+</header>
+
+<!-- HUD con el estado del robot -->
+<div class="hud mono" aria-hidden="true">
+  <span>Sistema <b id="hud-lock">En reposo</b></span>
+  <span id="hud-pct">000%</span>
+</div>
+
+<main>
+
+<!-- ── 1. Inicio ────────────────────────────────────────────────── -->
+<section class="hero" id="inicio">
+  <h1 class="hero__name" aria-label="Navila García">
+    <span class="hero__line split">Navila</span>
+    <span class="hero__line hero__line--out split">García</span>
+  </h1>
+  <p class="hero__sign" aria-hidden="true">Navila</p>
+  <!-- Retrato recortado y, debajo, su versión androide: escena.js los mezcla bajo el cursor (el «casco») -->
+  <div class="hero__retrato" id="retrato-slot">
+    <img src="assets/img/retrato.webp" alt="Navila García" width="1536" height="2520" fetchpriority="high">
+    <img class="hero__androide" src="assets/img/androide.webp" alt="" aria-hidden="true" width="1536" height="2520">
+  </div>
+  <div class="hero__meta wrap">
+    <p class="mono">Estudiante de ciberseguridad<br>Red &amp; Blue Team · Málaga</p><!-- ✎ -->
+    <p class="hero__cue mono">Desliza para descifrar <span class="hero__cue-line"></span></p>
+    <p class="mono hero__right">Portfolio 2026<br><span class="hero__hint"><span class="hint-raton">Pasa el cursor por su cara</span><span class="hint-tactil">Toca para mirar</span></span></p>
+  </div>
+</section>
+
+<!-- ── 2. Manifiesto: el robot despierta ───────────────────────── -->
+<section class="sec manif" id="acceso">
+  <div class="wrap">
+    <p class="eyebrow mono"><span class="chip"><span class="chip__dot"></span><span data-scramble id="chip-estado">Acceso concedido</span></span></p>
+    <!-- ✎ EDITAR: su manifiesto en primera persona -->
+    <p class="manif__text" id="manif">Aprendo a pensar como quien ataca para poder defender como quien protege. Cada sistema es un acertijo y cada fallo es una puerta que alguien debería cerrar antes de que la abra otro.</p>
+  </div>
+</section>
+
+<!-- ── 3. Sobre mí ──────────────────────────────────────────────── -->
+<section class="sec about" id="sobre-mi">
+  <div class="wrap about__grid">
+  <!-- Hueco de la foto: escena.js la pinta encima como holograma 3D. Sin WebGL se ve la <img> tal cual; sin foto, el hueco desaparece -->
+  <figure class="about__photo" id="foto-slot">
+    <img src="assets/img/foto.jpg" alt="Retrato de Navila García" width="768" height="960" decoding="async">
+    <figcaption class="mono"><span>ID verificado</span><span id="foto-pct">000%</span></figcaption>
+  </figure>
+  <div class="col">
+    <p class="eyebrow mono" data-scramble>whoami</p>
+    <h2 class="h2 lines">Curiosidad<br>con permiso</h2>
+    <!-- ✎ EDITAR: su presentación -->
+    <p class="lead" data-reveal>Estudio ciberseguridad porque me gusta entender cómo funcionan las cosas por dentro y, sobre todo, cómo se rompen. Paso las tardes entre máquinas de Hack The Box, salas de TryHackMe y apuntes de redes. Busco unas prácticas donde aprender de gente que lleve años defendiendo sistemas reales.</p>
+
+    <div class="term" data-reveal>
+      <div class="term__bar"><i></i><i></i><i></i><span class="mono">navila@kali: ~</span></div>
+      <pre class="term__body mono" id="term"><span class="p">navila@kali:~$</span> whoami
+navila.garcia · estudiante de ciberseguridad
+<span class="p">navila@kali:~$</span> cat intereses.txt
+pentesting web · forense · OSINT · CTFs
+<span class="p">navila@kali:~$</span> nmap -sV futuro
+PORT     STATE  SERVICE
+443/tcp  <span class="ok">open</span>   prácticas
+22/tcp   <span class="ok">open</span>   colaborar
+3389/tcp <span class="ko">closed</span> rendirse</pre>
+    </div>
+
+    <!-- ✎ EDITAR: cifras reales (ahora son de ejemplo) -->
+    <dl class="stats" data-reveal>
+      <div><dt class="mono">CTFs resueltos</dt><dd data-count="24">24</dd></div>
+      <div><dt class="mono">Máquinas comprometidas</dt><dd data-count="58">58</dd></div>
+      <div><dt class="mono">Horas de laboratorio</dt><dd data-count="320" data-suffix="+">320+</dd></div>
+    </dl>
+  </div>
+  </div>
+</section>
+
+<!-- ── 4. Arsenal: scroll horizontal ────────────────────────────── -->
+<section class="arsenal" id="arsenal">
+  <div class="arsenal__track">
+    <div class="arsenal__head wrap">
+      <p class="eyebrow mono" data-scramble>Habilidades</p>
+      <h2 class="h2 h2--xl lines">Arse<br>nal</h2>
+      <p class="muted">Lo que uso, lo que practico y lo que estoy aprendiendo.</p>
+    </div>
+    <!-- ✎ EDITAR: tarjetas de habilidades -->
+    <article class="card" data-tilt>
+      <p class="card__tag mono">Ofensiva</p>
+      <h3 class="card__title">Pentesting web</h3>
+      <p>Auditar aplicaciones como lo haría un atacante: inyecciones, control de acceso roto, sesiones y lógica de negocio.</p>
+      <p class="card__ref mono">OWASP A03:2021 · Injection</p>
+      <ul class="tools"><li>Burp Suite</li><li>sqlmap</li><li>ffuf</li><li>OWASP ZAP</li></ul>
+    </article>
+    <article class="card" data-tilt>
+      <p class="card__tag mono">Infraestructura</p>
+      <h3 class="card__title">Redes y sistemas</h3>
+      <p>Saber qué viaja por el cable y qué escucha en cada puerto. Linux, Windows y Active Directory.</p>
+      <p class="card__ref mono">TCP/443 · TLS 1.3 · Kerberos</p>
+      <ul class="tools"><li>Nmap</li><li>Wireshark</li><li>BloodHound</li><li>Linux</li></ul>
+    </article>
+    <article class="card" data-tilt>
+      <p class="card__tag mono">Defensiva</p>
+      <h3 class="card__title">Blue team · SOC</h3>
+      <p>Detectar antes de que duela: reglas, alertas, triaje y respuesta a incidentes.</p>
+      <p class="card__ref mono">NIST SP 800-61 · respuesta a incidentes</p>
+      <ul class="tools"><li>Splunk</li><li>Wazuh</li><li>Sigma</li><li>Suricata</li></ul>
+    </article>
+    <article class="card" data-tilt>
+      <p class="card__tag mono">Investigación</p>
+      <h3 class="card__title">Análisis forense</h3>
+      <p>Reconstruir lo que pasó sin contaminar la prueba: memoria, disco y línea temporal.</p>
+      <p class="card__ref mono">RFC 3227 · orden de volatilidad</p>
+      <ul class="tools"><li>Autopsy</li><li>Volatility</li><li>FTK Imager</li></ul>
+    </article>
+    <article class="card" data-tilt>
+      <p class="card__tag mono">Reconocimiento</p>
+      <h3 class="card__title">OSINT</h3>
+      <p>Encontrar lo que ya es público y nadie ha mirado con calma.</p>
+      <p class="card__ref mono">MITRE ATT&amp;CK · TA0043</p>
+      <ul class="tools"><li>Maltego</li><li>Shodan</li><li>theHarvester</li></ul>
+    </article>
+    <article class="card" data-tilt>
+      <p class="card__tag mono">Fundamentos</p>
+      <h3 class="card__title">Criptografía</h3>
+      <p>Cifrado simétrico y asimétrico, hashes, firmas y PKI. Y por qué no se inventa una propia.</p>
+      <p class="card__ref mono">AES-256-GCM · RSA-4096 · SHA-256</p>
+      <ul class="tools"><li>OpenSSL</li><li>CyberChef</li><li>hashcat</li></ul>
+    </article>
+    <article class="card" data-tilt>
+      <p class="card__tag mono">Automatizar</p>
+      <h3 class="card__title">Programación</h3>
+      <p>Scripts para no repetir dos veces lo mismo y herramientas pequeñas que hacen una cosa bien.</p>
+      <p class="card__ref mono">#!/usr/bin/env python3</p>
+      <ul class="tools"><li>Python</li><li>Bash</li><li>PowerShell</li><li>SQL</li></ul>
+    </article>
+  </div>
+</section>
+
+<!-- ── 5. Proyectos ─────────────────────────────────────────────── -->
+<section class="sec work" id="proyectos">
+  <div class="wrap">
+    <div class="work__head">
+      <p class="eyebrow mono" data-scramble>Proyectos y write-ups</p>
+      <h2 class="h2 lines">Lo que<br>he roto</h2>
+    </div>
+    <!-- ✎ EDITAR: proyectos reales (ahora son de ejemplo). data-tone = color de los ojos del robot -->
+    <ol class="rows">
+      <li><a class="row" href="#" data-tone="#8dffd2" data-cursor="Ver">
+        <span class="row__year mono">2026</span>
+        <span class="row__title">Homelab de Active Directory</span>
+        <span class="row__tags mono">Red team · Blue team</span>
+        <span class="row__arrow" aria-hidden="true">↗</span></a></li>
+      <li><a class="row" href="#" data-tone="#b9a4ff" data-cursor="Ver">
+        <span class="row__year mono">2026</span>
+        <span class="row__title">Write-ups de CTF</span>
+        <span class="row__tags mono">Hack The Box · TryHackMe</span>
+        <span class="row__arrow" aria-hidden="true">↗</span></a></li>
+      <li><a class="row" href="#" data-tone="#ff9f8a" data-cursor="Ver">
+        <span class="row__year mono">2025</span>
+        <span class="row__title">Malware en sandbox</span>
+        <span class="row__tags mono">Forense · Análisis dinámico</span>
+        <span class="row__arrow" aria-hidden="true">↗</span></a></li>
+      <li><a class="row" href="#" data-tone="#9fd0ff" data-cursor="Ver">
+        <span class="row__year mono">2025</span>
+        <span class="row__title">Escáner de puertos en Python</span>
+        <span class="row__tags mono">Herramienta · Código abierto</span>
+        <span class="row__arrow" aria-hidden="true">↗</span></a></li>
+      <li><a class="row" href="#" data-tone="#ffe08a" data-cursor="Ver">
+        <span class="row__year mono">2025</span>
+        <span class="row__title">Auditoría de DVWA</span>
+        <span class="row__tags mono">Pentesting web · Informe</span>
+        <span class="row__arrow" aria-hidden="true">↗</span></a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ── 6. Cinta ─────────────────────────────────────────────────── -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__row"><span>Pentesting · OSINT · Forense · Blue team · CTF · Criptografía · </span><span>Pentesting · OSINT · Forense · Blue team · CTF · Criptografía · </span></div>
+  <div class="marquee__row marquee__row--out"><span>Red team · SOC · Redes · Python · Linux · Active Directory · </span><span>Red team · SOC · Redes · Python · Linux · Active Directory · </span></div>
+</div>
+
+<!-- ── 7. Trayectoria ───────────────────────────────────────────── -->
+<section class="sec path" id="trayectoria">
+  <div class="wrap path__grid">
+    <div class="path__head">
+      <p class="eyebrow mono" data-scramble>Trayectoria</p>
+      <h2 class="h2 lines">Paso<br>a paso</h2>
+    </div>
+    <!-- ✎ EDITAR: estudios, certificaciones y fechas reales -->
+    <ol class="steps">
+      <span class="steps__line" aria-hidden="true"><span></span></span>
+      <li data-reveal><p class="mono">2024</p><h3>Primeros pasos</h3><p>Linux, redes y mi primera máquina en TryHackMe. Ahí empezó todo.</p></li>
+      <li data-reveal><p class="mono">2025</p><h3>Estudios de ciberseguridad</h3><p>Centro y titulación. Hacking ético, bastionado, normativa y análisis forense.</p></li>
+      <li data-reveal><p class="mono">2026</p><h3>CTFs y homelab</h3><p>Competiciones en equipo y un laboratorio propio para romper y arreglar sin miedo.</p></li>
+      <li data-reveal><p class="mono">2026 · en curso</p><h3>Certificación</h3><p>Preparando la primera certificación práctica (por ejemplo eJPT o CompTIA Security+).</p></li>
+      <li data-reveal><p class="mono">2027</p><h3>Prácticas</h3><p>El siguiente paso: un equipo de seguridad donde aportar y seguir aprendiendo.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ── 8. Contacto: el robot se despide ───────────────────────── -->
+<section class="contact" id="contacto">
+  <p class="eyebrow mono wrap contact__eyebrow" data-scramble>Canal seguro</p>
+  <h2 class="contact__title"><span class="split">¿Habla</span><span class="split contact__out">mos?</span></h2>
+  <div class="contact__body wrap">
+    <!-- ✎ EDITAR: correo y redes -->
+    <div class="mail">
+      <a class="mail__addr" href="mailto:nombre@correo.com" data-magnetic>nombre@correo.com</a>
+      <button class="btn mono" type="button" id="copy" data-mail="nombre@correo.com">Copiar correo</button>
+    </div>
+    <ul class="social mono">
+      <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener" data-magnetic>LinkedIn</a></li>
+      <li><a href="https://github.com/" target="_blank" rel="noopener" data-magnetic>GitHub</a></li>
+      <li><a href="https://tryhackme.com/" target="_blank" rel="noopener" data-magnetic>TryHackMe</a></li>
+      <li><a href="https://www.hackthebox.com/" target="_blank" rel="noopener" data-magnetic>Hack The Box</a></li>
+    </ul>
+    <p class="contact__sign" aria-hidden="true">Navila</p>
+  </div>
+  <footer class="foot wrap mono">
+    <span>© 2026 Navila García</span>
+    <span>Málaga <b id="clock">--:--:--</b></span>
+    <span class="foot__hash" title="Huella SHA-256 de mi nombre, calculada en tu navegador">SHA-256 <b id="hash">…</b></span>
+    <a href="#inicio">Volver arriba ↑</a>
+  </footer>
+</section>
+
+</main>
+
+<div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script src="assets/js/interfaz.js"></script>
+<script type="module" src="assets/js/escena.js"></script>
+</body>
+</html>

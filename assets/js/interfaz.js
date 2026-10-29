@@ -407,15 +407,15 @@
     }).catch(() => { huella.textContent = '—'; });
   } else if (huella) huella.textContent = '—';
 
-  // ── Huevo de pascua: escribir «hack» ──────────────────────────
+  // ── Huevo de pascua: escribir «sudo» ──────────────────────────
   let teclas = '';
   addEventListener('keydown', (e) => {
     if (e.target.closest('input, textarea')) return;
     teclas = (teclas + e.key.toLowerCase()).slice(-4);
-    if (teclas === 'hack') {
+    if (teclas === 'sudo') {
       root.classList.add('glitch');
       window.__escena && window.__escena.estallido();
-      avisar('Intrusión detectada. Era broma.');
+      avisar('Permisos de root concedidos. Úsalos con cabeza.');
       setTimeout(() => root.classList.remove('glitch'), 1100);
     }
   });

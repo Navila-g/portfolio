@@ -435,6 +435,8 @@ button { font: inherit; color: inherit; }
   overflow-wrap: anywhere; border-bottom: 1px solid var(--line); padding-bottom: .3rem;
   transition: color .3s, border-color .3s;
 }
+/* el correo solo se parte delante de la @, nunca a mitad de palabra */
+.mail__addr > span { display: inline-block; white-space: nowrap; }
 .mail__addr:hover { color: var(--phos); border-color: var(--phos); }
 .btn {
   padding: .75rem 1.2rem; border-radius: 999px; border: 1px solid var(--line);
@@ -518,6 +520,7 @@ button { font: inherit; color: inherit; }
   .stats { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
   .nav__cta { padding: .55rem .8rem; font-size: .62rem; }
   .card { padding: 1.5rem; }
+  .mail__addr { font-size: min(1.8rem, 8vw); }
 }
 
 /* ── Movimiento reducido ──────────────────────────────────────── */
